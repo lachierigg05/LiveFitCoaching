@@ -1,12 +1,12 @@
 package com.example.riggfittraining.Controllers;
 
-import com.example.riggfittraining.user.UserService;
-import com.example.riggfittraining.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.riggfittraining.Services.UserService;
 
 @RestController
 @RequestMapping("v1/user")
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void createUser(@RequestBody User user) {
-        userService.createUser(user);
+    public void createUser(@RequestBody String firstName, String lastName, String email, String username, String password) {
+        userService.createUser(firstName, lastName, email, username, password);
     }
 }

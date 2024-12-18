@@ -1,7 +1,13 @@
-package com.example.riggfittraining.user;
+package com.example.riggfittraining.Entities.user;
 
-import jakarta.persistence.*;
-import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
@@ -30,7 +36,6 @@ public class User {
     public User() {}
 
     public User(String firstName, String lastName, String email, String username, String password) {
-        this.user_id = generateUserId();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -38,16 +43,8 @@ public class User {
         this.password = password;
     }
 
-    public Long generateUserId() {
-        return UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-    }
-
     public Long getUser_id() {
         return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
     }
 
     public String getFirstName() {

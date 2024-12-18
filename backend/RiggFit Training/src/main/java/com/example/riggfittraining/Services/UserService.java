@@ -1,9 +1,12 @@
-package com.example.riggfittraining.user;
+package com.example.riggfittraining.Services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.riggfittraining.Entities.user.User;
+import com.example.riggfittraining.Repositories.UserRepository;
 
 @Service
 public class UserService {
@@ -16,11 +19,8 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public void createUser(User user) {
-        while (userRepo.existsById(user.getUser_id())) {
-            logger.warn("Creating user: user_id already exists, generating new user_id");
-            user.setUser_id(user.generateUserId());
-        }
+    public void createUser(String firstName, String lastName, String email, String username, String password) {
+        User user = new User(firstName, lastName, email, username, password);
         userRepo.save(user);
     }
 
