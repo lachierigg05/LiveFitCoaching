@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.riggfittraining.Entities.user.User;
+import com.example.riggfittraining.Entities.User.User;
 
 /**
  * Test class for User-related functionality.

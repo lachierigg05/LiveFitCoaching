@@ -1,4 +1,4 @@
-package com.example.riggfittraining.Entities.user;
+package com.example.riggfittraining.Entities.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

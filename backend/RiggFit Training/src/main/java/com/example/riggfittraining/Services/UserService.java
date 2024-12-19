@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.riggfittraining.Entities.user.User;
+import com.example.riggfittraining.Entities.User.User;
 import com.example.riggfittraining.Repositories.UserRepository;
 
 @Service
