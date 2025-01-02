@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.example.riggfittraining.Entities.User.User;
 import com.example.riggfittraining.Repositories.UserRepository;
 
+import java.util.Map;
+
 @Service
 public class UserService {
 
@@ -42,4 +44,27 @@ public class UserService {
                     logger.error("Attempted getUser with user_id that does not exist");
                     return new IllegalArgumentException("user_id does not exist");
                 });    }
+
+    public void updateUser(Long userId, Map<String, Object> updates) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User " + userId + " not found."));
+        updates.forEach((key, value) -> {
+            switch(key) {
+                case "firstName":
+                    user.setFirstName((String) value);
+                case "lastName":
+                    user.setLastName((String) value);
+                case "email":
+                    user.setEmail((String) value);
+                case "username":
+                    user.setUsername((String) value);
+                case "password":
+                    user.setPassword((String) value);
+                default:
+                    throw new IllegalArgumentException("Invalid field: " + key);
+            }
+        });
+
+        userRepo.save(user);
+    }
 }

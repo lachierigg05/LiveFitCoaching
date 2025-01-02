@@ -112,5 +112,6 @@ public class UserTests {
     public void getPasswordTest() {
         assertEquals("password", user.getPassword());
     }
+    
 }
 
