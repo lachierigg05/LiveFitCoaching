@@ -49,7 +49,7 @@ public abstract class User {
 
 
     public Long getUser_id() {
-        return user_id;
+        return this.user_id;
     }
 
     public String getFirstName() {

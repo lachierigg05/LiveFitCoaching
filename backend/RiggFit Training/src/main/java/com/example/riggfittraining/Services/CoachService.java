@@ -12,7 +12,6 @@ public class CoachService {
     private final CoachRepository coachRepo;
     private final static Logger logger = LoggerFactory.getLogger(CoachService.class);
 
-    @Autowired
     public CoachService(CoachRepository coachRepo) {
         this.coachRepo = coachRepo;
     }
@@ -26,10 +25,13 @@ public class CoachService {
      * @param email Email of the new coach
      * @param username Username of the new coach
      * @param password Password of the new coach
+     *
+     * @return The ID of the new coach
      */
-    public void createCoach(String firstName, String lastName, String email, String username, String password) {
-        Coach newCoach = new Coach(firstName, lastName, email, username, password);
-        coachRepo.save(newCoach);
+    public Long createCoach(String firstName, String lastName, String email, String username, String password) {
+        Coach coach = new Coach(firstName, lastName, email, username, password);
+        coachRepo.save(coach);
+        Coach c = coachRepo.getReferenceById(coach.getUser_id());
     }
 
     /**
