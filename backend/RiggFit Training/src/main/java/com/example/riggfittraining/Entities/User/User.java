@@ -8,12 +8,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 @Table(name="users")
 
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public abstract class User {
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
+
+    public User() {};
+
+    public User(String firstName, String lastName, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
@@ -33,15 +47,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User() {}
-
-    public User(String firstName, String lastName, String email, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-    }
 
     public Long getUser_id() {
         return user_id;

@@ -21,11 +21,6 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public void createUser(String firstName, String lastName, String email, String username, String password) {
-        User user = new User(firstName, lastName, email, username, password);
-        userRepo.save(user);
-    }
-
     public void deleteUser(Long user_id) {
         if (!userRepo.existsById(user_id)) {
             logger.error("Attempted to delete user with user_id that does not exist");
