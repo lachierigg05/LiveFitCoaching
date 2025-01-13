@@ -1,6 +1,5 @@
 package com.example.riggfittraining.Entities.User;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -54,6 +53,7 @@ public class Client extends User {
      * @return List of Coaches
      */
     public ArrayList<Coach> getCoaches() {
+        logger.debug("Retrieving list of coaches for client: {}", this);
         return coaches;
     }
 
@@ -77,6 +77,7 @@ public class Client extends User {
     public void removeCoach(Coach c) {
         try {
             this.coaches.remove(c);
+            logger.info("Coach removed from client's coach list: {}", c);
             c.getClients().remove(this);
         } catch (Exception e) {
             logger.error("Error removing coach from clients' coach list: {}", e.getMessage());

@@ -8,13 +8,16 @@ import jakarta.persistence.ManyToMany;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class ClientService {
     private final ClientRepository clientRepo;
     private static final Logger logger = LoggerFactory.getLogger(ClientService.class);
 
+    @Autowired
     public ClientService(ClientRepository clientRepo) {
         this.clientRepo = clientRepo;
     }
@@ -67,6 +70,7 @@ public class ClientService {
             logger.error("Attempted to delete a non-existent client.");
             throw new IllegalArgumentException("Cannot delete a client that doesn't exist.");
         }
+        logger.info("Client deleted: {}", c);
         clientRepo.delete(c);
     }
 }
